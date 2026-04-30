@@ -3,14 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function Header({ dark, toggleDark, cartCount, onCartOpen, navLinks }) {
   const navigate = useNavigate();
 
-  return (
-    <header>
-      <div className="logo">
-        <Link to="/home">
-          <img src="/Pack de Roupas Mask/MASK BLACK.png" alt="Mask" />
-        </Link>
-      </div>
-
+return (
+  <header>
+    <div className="logo">
+      <Link to="/home">
+        <img 
+          src="/Pack de Roupas Mask/MASK BLACK.png" 
+          alt="Mask" 
+          className="logo-light"
+        />
+        <img 
+          src="/Pack de Roupas Mask/maskLogo.jpeg" 
+          alt="Mask"
+          className="logo-dark"
+        />
+      </Link>
+    </div>
       <nav>
         <ul>
           {navLinks

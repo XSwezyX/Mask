@@ -109,13 +109,6 @@ export default function HomePage() {
 
         {/* INFORMAÇÕES */}
         <section id="informacoes" className="informacoes">
-          <div className="informacoes-texto">
-            <h2 className="type">Informações</h2>
-            <p><strong>Telefone:</strong> (11) 99999-9999</p>
-            <p><strong>Email:</strong> maskcompany@email.com</p>
-            <p><strong>Endereço:</strong> São Paulo - SP</p>
-            <p><strong>Horário:</strong> Seg - Sex / 9h às 18h</p>
-          </div>
           <img
             src="/Pack de Roupas Mask/masklogo-removebg-preview.png"
             alt="Mask Logo"

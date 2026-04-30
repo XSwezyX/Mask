@@ -874,35 +874,6 @@ export default function App() {
     </BrowserRouter>
   );
 }
-c) Função
-
-Esse sistema permite:
-
-Navegação sem recarregar a página
-Separação clara entre páginas
-Escalabilidade do projeto
-6 – package.json
-
-O package.json contém todas as configurações do projeto e dependências.
-
-a) Dependências principais
-"dependencies": {
-  "react": "^18.2.0",
-  "react-dom": "^18.2.0",
-  "react-router-dom": "^6.0.0"
-}
-b) Scripts
-"scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-}
-c) Função de cada script
-npm start → roda o projeto localmente
-npm run build → gera versão para produção
-npm test → roda testes
-npm eject → expõe configurações internas do React
 
 7 – CONSIDERAÇÕES FINAIS
 Principais funcionalidades implementadas:

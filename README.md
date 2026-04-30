@@ -679,8 +679,8 @@ Categorias
 <Link to="/calcas">...</Link>
 <Link to="/moletons">...</Link>
 ~~~  
-Cards clicáveis → levam para páginas
-~~~jsx  
+Cards clicáveis → levam para páginas  
+
 Carrinho lateral  
 ~~~jsx
 <CartSidebar
@@ -695,7 +695,8 @@ Mostra itens
 Permite remover
 Checkout ainda fake (toast)
 
-c)LoginPage.jsx
+c) LoginPage.jsx  
+
 Importações
 ~~~jsx
 import { useState } from 'react';
@@ -708,7 +709,8 @@ Validações
 const validEmail = (v) => ...
 const validPassword = (v) => ...
 const validPhone = (v) => ...
-~~~jsx
+~~~
+
 Funções que verificam:  
 email válido  
 senha com caractere especial  

@@ -903,15 +903,8 @@ npm start → roda o projeto localmente
 npm run build → gera versão para produção
 npm test → roda testes
 npm eject → expõe configurações internas do React
+
 7 – CONSIDERAÇÕES FINAIS
-
-O projeto foi estruturado com foco em:
-
-Reutilização de componentes
-Organização em pastas (components, hooks, pages)
-Experiência do usuário (UX)
-Escalabilidade
-
 Principais funcionalidades implementadas:
 
 Carrinho dinâmico com localStorage

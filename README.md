@@ -614,7 +614,8 @@ Funções aplicadas no site.
 ~~~
 
 b)HomePage.jsx
-Importações
+Importações  
+
 ~~~
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -630,7 +631,7 @@ import { useCart } from '../hooks/useCart';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useToast } from '../hooks/useToast';
 Importa React, navegação, componentes e lógica separada (hooks).
-~~~
+~~~jsx
 Links do menu.
 Estados principais
 ~~~

@@ -348,3 +348,264 @@ export default function Toast() {
   return <div className="toast" id="mask-toast" />;
 }
 ~~~
+2.2- Hooks
+a) useCart.js
+Este código serve para funções do carrinho, como adicionar e remover um item, sendo um modo de uso.
+~~~js
+import { useState, useEffect } from 'react';
+
+export function useCart() {
+  const [cart, setCart] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('maskCart') || '[]'); }
+    catch { return []; }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('maskCart', JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (nome, preco, img, tamanho, cor) => {
+    if (!tamanho) return false;
+    setCart(prev => {
+      const existing = prev.find(
+        i => i.nome === nome && i.tamanho === tamanho && i.cor === cor
+      );
+      if (existing) {
+        return prev.map(i => i === existing ? { ...i, qty: i.qty + 1 } : i);
+      }
+      return [...prev, { nome, preco, img, tamanho, cor, qty: 1 }];
+    });
+    return true;
+  };
+
+  const removeFromCart = (idx) => {
+    setCart(prev => prev.filter((_, i) => i !== idx));
+  };
+
+  const total = cart.reduce((acc, i) => acc + i.preco * i.qty, 0);
+  const count = cart.reduce((acc, i) => acc + i.qty, 0);
+
+  return { cart, addToCart, removeFromCart, total, count };
+}
+~~~
+b) useDarkMode.js
+Sua função é definir o modo de uso do DarkMode.
+~~~js
+import { useState, useEffect } from 'react';
+
+export function useDarkMode() {
+  const [dark, setDark] = useState(
+    () => localStorage.getItem('darkMode') === 'on'
+  );
+
+  useEffect(() => {
+    if (dark) {
+      document.body.classList.add('dark');
+      localStorage.setItem('darkMode', 'on');
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('darkMode', 'off');
+    }
+  }, [dark]);
+
+  const toggleDark = () => setDark(d => !d);
+
+  return [dark, toggleDark];
+}
+~~~
+c) useToast.js
+define o modo de uso do toas, que serve para mostrar notificações temporárias , evitando repetição de lógica.
+~~~js
+import { useCallback, useRef } from 'react';
+
+export function useToast() {
+  const timerRef = useRef(null);
+
+  const showToast = useCallback((msg) => {
+    const toast = document.getElementById('mask-toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => toast.classList.remove('show'), 2500);
+  }, []);
+
+  return showToast;
+}
+~~~
+2.3-Pages
+a) CatalogPages.jsx
+Página catalógo, mostrando produtos e ofertas.
+Importações aplicadas nas páginas, servindo para otimizar e deixar com os componentes necessários.
+~~~jsx
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import CartSidebar from '../components/CartSidebar';
+import CatNav from '../components/CatNav';
+import ProductModal from '../components/ProductModal';
+import Toast from '../components/Toast';
+import { useCart } from '../hooks/useCart';
+import { useDarkMode } from '../hooks/useDarkMode';
+import { useToast } from '../hooks/useToast';
+~~~
+criação de uma variável do catálogo.
+~~~jsx
+const CATALOG_NAV = [
+  { label: '!!NEW DROP!!', href: '/home#hero'    },
+  { label: 'Catálogo',     href: '/home'         },
+  { label: 'Sobre nós',   href: '/home#sobre'   },
+];
+~~~
+Exportaçãoe e estado do componente, como tema da página, dados do carrinho, função para mostrar notificações, verificação do estado do carrinho e verificação de qual produto está aberto. 
+~~~jsx
+export default function CatalogPage({ title, produtos }) {
+  const [dark, toggleDark] = useDarkMode();
+  const { cart, addToCart, removeFromCart, total, count } = useCart();
+  const showToast = useToast();
+
+  const [cartOpen, setCartOpen]     = useState(false);
+  const [modalProd, setModalProd]   = useState(null); // produto aberto no modal
+  const [selectedTams, setSelectedTams] = useState({}); // { idx: tamanho }
+~~~
+~~~jsx
+  // Close on Escape
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'Escape') {
+        setModalProd(null);
+        setCartOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
+  const handleSelectTam = (idx, tam) => {
+    setSelectedTams((prev) => ({ ...prev, [idx]: tam }));
+  };
+
+  const handleAddFromCard = (produto, idx) => {
+    const tamanho = selectedTams[idx] || '';
+    const ok = addToCart(produto.nome, produto.preco, produto.imgFront, tamanho, produto.cores[0]?.nome || '');
+    if (!ok) { showToast('Selecione um tamanho!'); return; }
+    showToast('✓ Adicionado ao carrinho');
+  };
+
+  const handleAddFromModal = (nome, preco, img, tamanho, cor) => {
+    const ok = addToCart(nome, preco, img, tamanho, cor);
+    if (!ok) { showToast('Selecione um tamanho!'); return; }
+    showToast('✓ Adicionado ao carrinho');
+  };
+
+  const fmt = (val) => 'R$ ' + val.toFixed(2).replace('.', ',');
+
+  return (
+    <>
+      <Toast />
+
+      <Header
+        dark={dark}
+        toggleDark={toggleDark}
+        cartCount={count}
+        onCartOpen={() => setCartOpen(true)}
+        navLinks={CATALOG_NAV}
+      />
+
+      <CatNav />
+
+      {/* BANNER */}
+      <section className="category-banner">
+        <div className="banner-text">
+          <p>Coleção 2026</p>
+          <h1>{title}</h1>
+        </div>
+      </section>
+
+      {/* PRODUTOS */}
+      <main>
+        <section className="produtos-section">
+          <div className="produtos-header">
+            <h2>Todos os {title}</h2>
+            <span className="produtos-count">{produtos.length} produtos</span>
+          </div>
+
+          <div className="produtos-grid">
+            {produtos.map((produto, idx) => (
+              <article
+                key={idx}
+                className="produto-card"
+                onClick={() => setModalProd(produto)}
+              >
+                <div className="produto-card-img">
+                  {produto.badge && (
+                    <span className="produto-badge">{produto.badge}</span>
+                  )}
+                  <img className="img-front" src={produto.imgFront} alt={produto.nome} />
+                  {produto.imgBack && (
+                    <img className="img-back" src={produto.imgBack} alt={`${produto.nome} costas`} />
+                  )}
+                </div>
+
+                <div className="produto-card-info">
+                  <h3>{produto.nome}</h3>
+                  <p className="desc">{produto.desc}</p>
+
+                  <div className="produto-card-bottom">
+                    <span className="produto-preco">{fmt(produto.preco)}</span>
+                    <div className="tamanhos-mini">
+                      {produto.tamanhos.map((t) => (
+                        <span
+                          key={t}
+                          className={`tamanho-tag${selectedTams[idx] === t ? ' selected' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSelectTam(idx, t);
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    className="btn-add-card"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddFromCard(produto, idx);
+                    }}
+                  >
+                    Adicionar ao Carrinho
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+
+      {/* MODAL */}
+      {modalProd && (
+        <ProductModal
+          produto={modalProd}
+          onClose={() => setModalProd(null)}
+          onAddToCart={handleAddFromModal}
+        />
+      )}
+
+      <CartSidebar
+        open={cartOpen}
+        onClose={() => setCartOpen(false)}
+        cart={cart}
+        onRemove={removeFromCart}
+        total={total}
+        onCheckout={() => showToast('Em breve: checkout online!')}
+      />
+    </>
+  );
+}
+~~~

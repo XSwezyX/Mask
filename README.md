@@ -613,9 +613,9 @@ Funções aplicadas no site.
 }
 ~~~
 
-b)HomePage.jsx
-Importações  
+b)HomePage.jsx 
 
+Importações
 ~~~
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -633,6 +633,7 @@ import { useToast } from '../hooks/useToast';
 Importa React, navegação, componentes e lógica separada (hooks).
 ~~~jsx
 Links do menu.
+
 Estados principais
 ~~~
 const [dark, toggleDark] = useDarkMode();
@@ -641,8 +642,9 @@ const showToast = useToast();
 Tema, carrinho e notificações.
 const [cartOpen, setCartOpen] = useState(false);
 const [activeSlide, setActiveSlide] = useState(0);
-~~~
-Controle do carrinho e slider.
+~~~jsx
+Controle do carrinho e slider.  
+
 Efeitos
 ~~~
 // Troca automática de slide
@@ -679,7 +681,8 @@ Apenas uma fica ativa por vez
 ~~~
 Cards clicáveis → levam para páginas
 ~~~
-🛒 Carrinho lateral
+Carrinho lateral  
+
 <CartSidebar
   open={cartOpen}
   cart={cart}

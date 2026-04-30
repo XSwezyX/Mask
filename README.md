@@ -616,7 +616,7 @@ Funções aplicadas no site.
 b)HomePage.jsx 
 
 Importações
-~~~
+~~~jsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -631,22 +631,22 @@ import { useCart } from '../hooks/useCart';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useToast } from '../hooks/useToast';
 Importa React, navegação, componentes e lógica separada (hooks).
-~~~jsx
-Links do menu.
+~~~
+Links do menu.  
 
 Estados principais
-~~~
+~~~jsx
 const [dark, toggleDark] = useDarkMode();
 const { cart, removeFromCart, total, count } = useCart();
 const showToast = useToast();
 Tema, carrinho e notificações.
 const [cartOpen, setCartOpen] = useState(false);
 const [activeSlide, setActiveSlide] = useState(0);
-~~~jsx
-Controle do carrinho e slider.  
+~~~
+Controle do carrinho e slider.    
 
 Efeitos
-~~~
+~~~jsx
 // Troca automática de slide
 useEffect(() => {
   const timer = setInterval(
@@ -661,28 +661,28 @@ useEffect(() => {
   window.addEventListener('keydown', handler);
   return () => window.removeEventListener('keydown', handler);
 }, []);
-~~~
+~~~  
 Hero (slider)
-~~~
+~~~jsx
 <section id="hero">
   {SLIDES.map((src, i) => (
     <img className={activeSlide === i ? 'active' : ''} />
   ))}
 </section>
 ~~~
-Renderiza imagens
-Apenas uma fica ativa por vez
-🛍️ Categorias
-~~~
+Renderiza imagens e apenas uma fica ativa por vez  
+
+Categorias
+~~~jsx
 <Link to="/camisetas">...</Link>
 <Link to="/shorts">...</Link>
 <Link to="/calcas">...</Link>
 <Link to="/moletons">...</Link>
-~~~
+~~~  
 Cards clicáveis → levam para páginas
-~~~
+~~~jsx  
 Carrinho lateral  
-
+~~~jsx
 <CartSidebar
   open={cartOpen}
   cart={cart}

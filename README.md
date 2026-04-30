@@ -694,3 +694,101 @@ Carrinho lateral
 Mostra itens
 Permite remover
 Checkout ainda fake (toast)
+
+c)LoginPage.jsx
+Importações
+~~~jsx
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+useState: estados
+useNavigate: redirecionar página
+~~~
+Validações
+~~~jsx
+const validEmail = (v) => ...
+const validPassword = (v) => ...
+const validPhone = (v) => ...
+~~~jsx
+Funções que verificam:  
+email válido  
+senha com caractere especial  
+telefone no formato (11)91234-5678
+
+Dados padrão
+~~~jsx
+const EMPTY = { email: '', password: '', phone: '', birth: '', gender: '' };
+const Field = ({ id, label, error, children }) => (...)
+~~~
+Estado inicial do cadastro    
+Reutiliza:  
+label  
+input  
+erro  
+
+Estados principais  
+~~~jsx
+const [panel, setPanel] = useState('login');
+Alterna entre login e cadastro
+const [login, setLogin] = useState({ ... });
+const [loginErr, setLoginErr] = useState({});
+Dados + erros do login
+const [reg, setReg] = useState(EMPTY);
+const [regErr, setRegErr] = useState({});
+~~~
+Dados + erros do cadastro  
+
+Troca de tela  
+~~~jsx
+const switchPanel = (to) => {
+  setPanel(to);
+  setLoginErr({});
+  setRegErr({});
+};
+~~~  
+Alterna entre login/register e limpa erros  
+Remove tudo que não é número  
+Formata automaticamente enquanto digita  
+Login  
+~~~jsx
+const handleLogin = () => {
+  // valida
+  // salva no localStorage
+  // redireciona
+};
+~~~
+Cadastro
+~~~jsx
+const handleRegister = () => {
+  // valida tudo
+  // salva dados
+  // redireciona
+};
+~~~  
+Valida todos campos e salva usuário completo no localStorage  
+
+Layout base  
+~~~jsx
+<div className="login-body">
+  <div className="login-bg">...</div>
+  <main className="login-page">...</main>
+</div>
+~~~  
+Fundo com imagem + overlay + Card central  
+
+Painel LOGIN  
+{panel === 'login' && ( ... )}
+Inputs:
+email
+senha
+Botão entrar
+Link → cadastro
+🆕 Painel REGISTER
+{panel === 'register' && ( ... )}
+Inputs:
+email
+senha
+telefone (com máscara)
+data nascimento
+gênero
+Botão cadastrar
+Link → login

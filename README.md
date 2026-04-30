@@ -794,3 +794,155 @@ data nascimento
 gênero
 Botão cadastrar
 Link → login
+
+d) Global.css
+Login
+~~~css
+.login-body {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Space Mono', monospace;
+  background: var(--black);
+  color: var(--white);
+  overflow: hidden;
+  position: relative;
+}
+~~~
+
+
+Essa parte define o fundo e estrutura principal da página de login.
+
+🖼️ Background do Login
+.login-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.70);
+}
+
+Imagem de fundo cobrindo toda a tela com efeito escurecido.
+
+🪟 Card do Login
+.login-card {
+  width: 380px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  padding: 44px;
+}
+
+Caixa onde fica o formulário (efeito vidro / glassmorphism).
+
+🧾 Inputs
+.login-field input {
+  width: 100%;
+  background: rgba(245, 240, 232, 0.07);
+  border: 1px solid var(--border);
+  color: var(--white);
+}
+
+Define estilo dos campos de entrada.
+
+⚠️ Erro nos Inputs
+.login-field input.invalid {
+  border-color: var(--error);
+}
+
+Mostra erro visual quando o campo é inválido.
+
+🔘 Botão Login
+.login-btn {
+  width: 100%;
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+}
+
+Botão principal de ação (entrar/cadastrar).
+
+🎞️ Hero (Slider)
+.hero {
+  height: 500px;
+  overflow: hidden;
+}
+
+Container do banner principal.
+
+.slide {
+  position: absolute;
+  opacity: 0;
+}
+.slide.active {
+  opacity: 1;
+}
+
+Controla qual imagem aparece no slider.
+
+🛍️ Categorias
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+Cria grid responsivo das categorias.
+
+.categoria img {
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+Imagem das categorias com efeito visual.
+
+🧾 Sobre
+.sobre {
+  padding: 80px 10%;
+}
+
+Seção institucional da marca.
+
+🔻 Footer
+footer {
+  background: #ffffff;
+  padding: 50px 10%;
+}
+
+Rodapé do site.
+
+🛒 Carrinho
+.cart-sidebar {
+  position: fixed;
+  right: -420px;
+  transition: right 0.3s;
+}
+.cart-sidebar.active {
+  right: 0;
+}
+
+Carrinho lateral que abre/fecha deslizando.
+
+🔔 Toast
+.toast {
+  position: fixed;
+  bottom: 30px;
+  opacity: 0;
+}
+.toast.show {
+  opacity: 1;
+}
+
+Mensagem temporária (notificação).
+
+🌙 Dark Mode
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+Ativa tema escuro no site inteiro.
+
+📱 Responsivo
+@media (max-width: 900px) {
+  .hero { height: 300px; }
+}
+
+Ajusta layout para telas menores.

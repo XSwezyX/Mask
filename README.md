@@ -612,3 +612,81 @@ Funções aplicadas no site.
   );
 }
 ~~~
+
+b)HomePage.jsx
+Importações
+~~~
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+// Componentes
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import CartSidebar from '../components/CartSidebar';
+import Toast from '../components/Toast';
+
+// Hooks personalizados
+import { useCart } from '../hooks/useCart';
+import { useDarkMode } from '../hooks/useDarkMode';
+import { useToast } from '../hooks/useToast';
+Importa React, navegação, componentes e lógica separada (hooks).
+~~~
+Links do menu.
+Estados principais
+~~~
+const [dark, toggleDark] = useDarkMode();
+const { cart, removeFromCart, total, count } = useCart();
+const showToast = useToast();
+Tema, carrinho e notificações.
+const [cartOpen, setCartOpen] = useState(false);
+const [activeSlide, setActiveSlide] = useState(0);
+~~~
+Controle do carrinho e slider.
+Efeitos
+~~~
+// Troca automática de slide
+useEffect(() => {
+  const timer = setInterval(
+    () => setActiveSlide((i) => (i + 1) % SLIDES.length),
+    3000
+  );
+  return () => clearInterval(timer);
+}, []);
+// Fecha carrinho com ESC
+useEffect(() => {
+  const handler = (e) => { if (e.key === 'Escape') setCartOpen(false); };
+  window.addEventListener('keydown', handler);
+  return () => window.removeEventListener('keydown', handler);
+}, []);
+~~~
+Hero (slider)
+~~~
+<section id="hero">
+  {SLIDES.map((src, i) => (
+    <img className={activeSlide === i ? 'active' : ''} />
+  ))}
+</section>
+~~~
+Renderiza imagens
+Apenas uma fica ativa por vez
+🛍️ Categorias
+~~~
+<Link to="/camisetas">...</Link>
+<Link to="/shorts">...</Link>
+<Link to="/calcas">...</Link>
+<Link to="/moletons">...</Link>
+~~~
+Cards clicáveis → levam para páginas
+~~~
+🛒 Carrinho lateral
+<CartSidebar
+  open={cartOpen}
+  cart={cart}
+  total={total}
+  onRemove={removeFromCart}
+  onCheckout={() => showToast('Em breve')}
+/>
+~~~
+Mostra itens
+Permite remover
+Checkout ainda fake (toast)

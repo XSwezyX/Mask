@@ -753,3 +753,170 @@ export default function HomePage() {
   );
 }
 ~~~
+2.3 – Pages 
+c) Outras páginas (ex: Camisetas, Shorts, etc.)
+
+As páginas de categorias (como camisetas, shorts, calças e moletons) reutilizam o mesmo componente CatalogPage, mudando apenas o título e a lista de produtos.
+
+Exemplo de uso:
+
+import CatalogPage from './CatalogPage';
+import { camisetas } from '../data/produtos';
+
+export default function CamisetasPage() {
+  return <CatalogPage title="Camisetas" produtos={camisetas} />;
+}
+
+Esse padrão evita repetição de código e facilita manutenção.
+
+3 – STYLE (CSS)
+
+A parte de style é responsável por toda a aparência visual do site.
+
+a) Organização do CSS
+
+Os estilos foram organizados em arquivos separados, como por exemplo:
+
+global.css → estilos gerais (body, fontes, cores)
+header.css → estilos do cabeçalho
+footer.css → rodapé
+catalog.css → página de produtos
+modal.css → modal de produto
+cart.css → carrinho lateral
+b) Dark Mode
+
+O Dark Mode funciona através da classe dark no <body>:
+
+body.dark {
+  background-color: #000;
+  color: #fff;
+}
+
+Quando o hook useDarkMode ativa, ele adiciona essa classe automaticamente:
+
+document.body.classList.add('dark');
+c) Responsividade
+
+Foi utilizado:
+
+flexbox
+grid
+media queries
+
+Exemplo:
+
+@media (max-width: 768px) {
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+Isso permite que o site funcione bem em celular, tablet e desktop.
+
+4 – index.js
+
+Esse arquivo é o ponto inicial da aplicação React.
+
+Responsável por renderizar o App dentro da div#root do HTML.
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './styles/global.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+5 – App.jsx
+
+O App.jsx é o coração do sistema, responsável por:
+
+Configurar as rotas
+Definir qual página será exibida
+Controlar a navegação
+a) Importações principais
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import CatalogPage from './pages/CatalogPage';
+b) Estrutura de rotas
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+
+        <Route path="/home" element={<HomePage />} />
+
+        <Route
+          path="/camisetas"
+          element={<CatalogPage title="Camisetas" produtos={[]} />}
+        />
+
+        <Route
+          path="/shorts"
+          element={<CatalogPage title="Shorts" produtos={[]} />}
+        />
+
+        <Route
+          path="/calcas"
+          element={<CatalogPage title="Calças" produtos={[]} />}
+        />
+
+        <Route
+          path="/moletons"
+          element={<CatalogPage title="Moletons" produtos={[]} />}
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+c) Função
+
+Esse sistema permite:
+
+Navegação sem recarregar a página
+Separação clara entre páginas
+Escalabilidade do projeto
+6 – package.json
+
+O package.json contém todas as configurações do projeto e dependências.
+
+a) Dependências principais
+"dependencies": {
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-router-dom": "^6.0.0"
+}
+b) Scripts
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+c) Função de cada script
+npm start → roda o projeto localmente
+npm run build → gera versão para produção
+npm test → roda testes
+npm eject → expõe configurações internas do React
+7 – CONSIDERAÇÕES FINAIS
+
+O projeto foi estruturado com foco em:
+
+Reutilização de componentes
+Organização em pastas (components, hooks, pages)
+Experiência do usuário (UX)
+Escalabilidade
+
+Principais funcionalidades implementadas:
+
+Carrinho dinâmico com localStorage
+Modal interativo de produto
+Sistema de categorias
+Dark Mode
+Notificações (Toast)
+Navegação com React Router

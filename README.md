@@ -414,7 +414,7 @@ export function useDarkMode() {
 }
 ~~~
 c) useToast.js
-define o modo de uso do toas, que serve para mostrar notificações temporárias , evitando repetição de lógica.
+Define o modo de uso do toas, que serve para mostrar notificações temporárias , evitando repetição de lógica.
 ~~~js
 import { useCallback, useRef } from 'react';
 
@@ -450,7 +450,7 @@ import { useCart } from '../hooks/useCart';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useToast } from '../hooks/useToast';
 ~~~
-criação de uma variável do catálogo.
+Criação de uma variável do catálogo.
 ~~~jsx
 const CATALOG_NAV = [
   { label: '!!NEW DROP!!', href: '/home#hero'    },
@@ -469,6 +469,7 @@ export default function CatalogPage({ title, produtos }) {
   const [modalProd, setModalProd]   = useState(null); // produto aberto no modal
   const [selectedTams, setSelectedTams] = useState({}); // { idx: tamanho }
 ~~~
+Fecha o modal usando ESC.
 ~~~jsx
   // Close on Escape
   useEffect(() => {
@@ -481,7 +482,9 @@ export default function CatalogPage({ title, produtos }) {
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, []);
-
+~~~
+Funções aplicadas no site. 
+~~~jsx
   const handleSelectTam = (idx, tam) => {
     setSelectedTams((prev) => ({ ...prev, [idx]: tam }));
   };

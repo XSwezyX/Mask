@@ -812,17 +812,21 @@ Login
 
 Essa parte define o fundo e estrutura principal da página de login.
 
-🖼️ Background do Login
+Background do Login
+~~~css
 .login-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(0.70);
 }
+~~~
 
-Imagem de fundo cobrindo toda a tela com efeito escurecido.
+Imagem de fundo cobrindo toda a tela com efeito escurecido.  
 
-🪟 Card do Login
+
+Card do Login  
+~~~css
 .login-card {
   width: 380px;
   background: var(--glass);
@@ -830,44 +834,42 @@ Imagem de fundo cobrindo toda a tela com efeito escurecido.
   border: 1px solid var(--border);
   padding: 44px;
 }
+~~~~
+Caixa onde fica o formulário (efeito vidro / glassmorphism).  
 
-Caixa onde fica o formulário (efeito vidro / glassmorphism).
-
-🧾 Inputs
+Inputs  
+~~~css
 .login-field input {
   width: 100%;
   background: rgba(245, 240, 232, 0.07);
   border: 1px solid var(--border);
   color: var(--white);
 }
+~~~
 
-Define estilo dos campos de entrada.
 
-⚠️ Erro nos Inputs
-.login-field input.invalid {
-  border-color: var(--error);
-}
+Botão Login  
 
-Mostra erro visual quando o campo é inválido.
-
-🔘 Botão Login
+~~~css
 .login-btn {
   width: 100%;
   background: var(--white);
   color: var(--black);
   cursor: pointer;
 }
+~~~
+Botão principal de ação (entrar/cadastrar).  
 
-Botão principal de ação (entrar/cadastrar).
-
-🎞️ Hero (Slider)
+Hero (Slider)  
+~~~css
 .hero {
   height: 500px;
   overflow: hidden;
 }
+~~~
+Container do banner principal.  
 
-Container do banner principal.
-
+~~~css
 .slide {
   position: absolute;
   opacity: 0;
@@ -875,40 +877,40 @@ Container do banner principal.
 .slide.active {
   opacity: 1;
 }
+~~~
+Controla qual imagem aparece no slider.  
 
-Controla qual imagem aparece no slider.
 
-🛍️ Categorias
+Categorias  
+~~~css
 .categorias {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
+~~~
 
 Cria grid responsivo das categorias.
-
+~~~css
 .categoria img {
   object-fit: cover;
   transition: 0.4s;
 }
-
+~~~
 Imagem das categorias com efeito visual.
 
-🧾 Sobre
-.sobre {
-  padding: 80px 10%;
-}
+Sobre  
 
-Seção institucional da marca.
-
-🔻 Footer
+Footer  
+~~~css
 footer {
   background: #ffffff;
   padding: 50px 10%;
 }
+~~~  
+Rodapé do site.  
 
-Rodapé do site.
-
-🛒 Carrinho
+Carrinho  
+~~~css
 .cart-sidebar {
   position: fixed;
   right: -420px;
@@ -917,10 +919,12 @@ Rodapé do site.
 .cart-sidebar.active {
   right: 0;
 }
+~~~
 
-Carrinho lateral que abre/fecha deslizando.
+Carrinho lateral que abre/fecha deslizando.  
 
-🔔 Toast
+Toast  
+~~~css
 .toast {
   position: fixed;
   bottom: 30px;
@@ -929,20 +933,23 @@ Carrinho lateral que abre/fecha deslizando.
 .toast.show {
   opacity: 1;
 }
+~~~
 
 Mensagem temporária (notificação).
 
 🌙 Dark Mode
+~~~css
 body.dark {
   background-color: #121212;
   color: #ffffff;
 }
+~~~
 
 Ativa tema escuro no site inteiro.
 
-📱 Responsivo
+Responsivo ~~~css
 @media (max-width: 900px) {
   .hero { height: 300px; }
 }
-
+~~~  
 Ajusta layout para telas menores.

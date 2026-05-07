@@ -795,7 +795,8 @@ gênero
 Botão cadastrar
 Link → login
 
-d) Global.css
+2.4 styles
+a) Global.css
 Login
 ~~~css
 .login-body {

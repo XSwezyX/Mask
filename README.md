@@ -993,3 +993,31 @@ Definição das rotas, definindo como vai ser cada uma delas em cada componente.
   );
 }
 ~~~
+4. index.js
+Importa a biblioteca React, necessária para usar JSX e componentes React.
+~~~js
+import React from 'react';
+~~~
+Importa o ReactDOM, que é responsável por renderizar componentes React no DOM (a página HTML).
+~~~js
+import ReactDOM from 'react-dom/client';
+~~~
+Importa o arquivo CSS global que estiliza toda a aplicação.
+~~~js
+import './styles/global.css';
+~~~
+Importa o componente App, que é o componente raiz da sua aplicação.
+~~~js
+import App from './App';
+~~~
+Cria uma "raiz" do React no elemento HTML com id="root".
+~~~js
+const root = ReactDOM.createRoot(document.getElementById('root'));
+~~~
+Renderiza o componente App dentro da raiz criada.
+~~~js
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

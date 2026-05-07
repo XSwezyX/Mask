@@ -954,3 +954,42 @@ Responsivo ~~~css
 }
 ~~~  
 Ajusta layout para telas menores.
+3. App.jsx
+Ativa o sistema de roteamento da aplicação, permitindo navegação entre páginas sem recarregar o site.
+~~~jsx
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+~~~
+Chama os componentes da página principal
+~~~jsx
+import LoginPage   from './pages/LoginPage';
+import HomePage    from './pages/HomePage';
+import CatalogPage from './pages/CatalogPage';
+~~~
+Importa dados do produto
+~~~jsx
+import { camisetas, shorts, calcas, moletons } from './data/products';
+~~~
+Criacao da função
+~~~jsx
+export default function App() {
+  return (
+~~~
+Ativa o sistema de roteamento da aplicação, permitindo navegação entre páginas sem recarregar o site.
+~~~jsx 
+    <BrowserRouter>
+~~~
+Definição das rotas, definindo como vai ser cada uma delas em cada componente.
+~~~jsx
+      <Routes>
+        <Route path="/"          element={<LoginPage />} />
+        <Route path="/home"      element={<HomePage />} />
+        <Route path="/camisetas" element={<CatalogPage title="Camisetas" produtos={camisetas} />} />
+        <Route path="/shorts"    element={<CatalogPage title="Shorts"    produtos={shorts}    />} />
+        <Route path="/calcas"    element={<CatalogPage title="Calças"    produtos={calcas}    />} />
+        <Route path="/moletons"  element={<CatalogPage title="Moletons"  produtos={moletons}  />} />
+        <Route path="*"          element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+~~~

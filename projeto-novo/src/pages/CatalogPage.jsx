@@ -1,38 +1,32 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CartSidebar from '../components/CartSidebar';
 import CatNav from '../components/CatNav';
-import ProductModal from '../components/ProductModal';
 import Toast from '../components/Toast';
 import { useCart } from '../hooks/useCart';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useToast } from '../hooks/useToast';
 
 const CATALOG_NAV = [
-  { label: '!!NEW DROP!!', href: '/home#hero'    },
-  { label: 'Catálogo',     href: '/home'         },
-  { label: 'Sobre nós',   href: '/home#sobre'   },
+  { label: '!!NEW DROP!!', href: '/home#hero'  },
+  { label: 'Catálogo',     href: '/home'       },
+  { label: 'Sobre nós',   href: '/home#sobre' },
 ];
 
-export default function CatalogPage({ title, produtos }) {
+export default function CatalogPage({ title, produtos, categoria }) {
+  const navigate = useNavigate();
   const [dark, toggleDark] = useDarkMode();
   const { cart, addToCart, removeFromCart, total, count } = useCart();
   const showToast = useToast();
 
-  const [cartOpen, setCartOpen]     = useState(false);
-  const [modalProd, setModalProd]   = useState(null); // produto aberto no modal
+  const [cartOpen, setCartOpen]         = useState(false);
   const [selectedTams, setSelectedTams] = useState({}); // { idx: tamanho }
 
-  // Close on Escape
+  // Fecha carrinho com Escape
   useEffect(() => {
-    const handler = (e) => {
-      if (e.key === 'Escape') {
-        setModalProd(null);
-        setCartOpen(false);
-      }
-    };
+    const handler = (e) => { if (e.key === 'Escape') setCartOpen(false); };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, []);
@@ -44,12 +38,6 @@ export default function CatalogPage({ title, produtos }) {
   const handleAddFromCard = (produto, idx) => {
     const tamanho = selectedTams[idx] || '';
     const ok = addToCart(produto.nome, produto.preco, produto.imgFront, tamanho, produto.cores[0]?.nome || '');
-    if (!ok) { showToast('Selecione um tamanho!'); return; }
-    showToast('✓ Adicionado ao carrinho');
-  };
-
-  const handleAddFromModal = (nome, preco, img, tamanho, cor) => {
-    const ok = addToCart(nome, preco, img, tamanho, cor);
     if (!ok) { showToast('Selecione um tamanho!'); return; }
     showToast('✓ Adicionado ao carrinho');
   };
@@ -91,7 +79,8 @@ export default function CatalogPage({ title, produtos }) {
               <article
                 key={idx}
                 className="produto-card"
-                onClick={() => setModalProd(produto)}
+                onClick={() => navigate(`/${categoria}/${idx}`)}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="produto-card-img">
                   {produto.badge && (
@@ -142,15 +131,6 @@ export default function CatalogPage({ title, produtos }) {
       </main>
 
       <Footer />
-
-      {/* MODAL */}
-      {modalProd && (
-        <ProductModal
-          produto={modalProd}
-          onClose={() => setModalProd(null)}
-          onAddToCart={handleAddFromModal}
-        />
-      )}
 
       <CartSidebar
         open={cartOpen}

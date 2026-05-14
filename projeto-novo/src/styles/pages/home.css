@@ -1,0 +1,91 @@
+/* ============================================
+   MASK® — HOME PAGE
+   ============================================ */
+
+/* Hero / Slider */
+.hero {
+  position: relative;
+  height: 500px; width: 80%;
+  margin: 40px auto;
+  background-color: #f0f0f0;
+  overflow: hidden;
+  border: 1px solid #1a1a1a;
+}
+
+.slide {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
+}
+.slide.active { opacity: 1; }
+
+/* Categorias */
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+  padding: 20px;
+  background-color: #eaeaea;
+}
+
+.categoria {
+  position: relative; height: 500px;
+  overflow: hidden; background-color: #FFFFFF;
+  display: block; text-decoration: none;
+}
+
+.categoria img {
+  width: 100%; height: 100%;
+  object-fit: cover; filter: grayscale(20%); transition: 0.4s;
+}
+.categoria:hover img { filter: grayscale(0%); transform: scale(1.05); }
+
+.overlay {
+  position: absolute;
+  top: 10%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.9);
+  padding: 10px 25px;
+  border: 1px solid #1a1a1a;
+}
+.overlay h2 {
+  font-size: 1.5rem; text-transform: uppercase;
+  font-weight: 800; color: #1a1a1a; white-space: nowrap;
+}
+
+/* Sobre */
+.sobre,
+.informacoes { padding: 80px 10%; text-align: left; }
+
+.sobre h2, .informacoes h2 {
+  font-size: 3rem; margin-bottom: 40px;
+  text-transform: uppercase; letter-spacing: -2px;
+}
+
+.fotos-sobre img {
+  display: block; margin: 0 auto;
+  width: 50%; height: 500px;
+  object-fit: cover; object-position: top;
+  border: 1px solid #1a1a1a;
+}
+
+/* Informações com logo flutuante */
+.informacoes {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 40px; position: relative;
+}
+
+.informacoes-texto         { max-width: 400px; }
+.informacoes-texto h2      { margin-bottom: 15px; font-size: 28px; }
+.informacoes-texto p       { margin: 5px 0; font-size: 16px; }
+
+.informacoes > img {
+  max-width: 200px; height: auto;
+  position: absolute; left: 50%;
+  transform: translateX(-50%);
+  animation: flutuar 3s ease-in-out infinite;
+}

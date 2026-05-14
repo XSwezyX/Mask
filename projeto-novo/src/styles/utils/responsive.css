@@ -1,0 +1,51 @@
+/* ============================================
+   MASK® — RESPONSIVO
+   ============================================ */
+
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+  }
+  .logo img { margin-bottom: 10px; margin-right: 0; }
+
+  nav { flex-direction: column; gap: 10px; width: 100%; }
+  nav ul:not(.icons) { gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .icons { justify-content: center; }
+
+  .hero { height: 300px; width: 95%; margin: 20px auto; }
+
+  .informacoes { flex-direction: column; text-align: center; }
+  .informacoes > img {
+    position: static;
+    transform: none;
+    margin: 20px 0;
+    animation: none;
+  }
+
+  .fotos-sobre img { width: 90%; height: 320px; }
+
+  .modal-body { grid-template-columns: 1fr; }
+  .modal-main-img { height: 320px; }
+  .modal-info { padding: 24px 20px; }
+
+  .cart-sidebar { width: 100vw; }
+
+  .category-banner { padding: 40px 6%; }
+  .category-banner h1 { font-size: clamp(2.5rem, 12vw, 5rem); }
+
+  .produtos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .produtos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .produto-card-img { height: 220px; }
+}
+
+@media (max-width: 400px) {
+  .produtos-grid { grid-template-columns: 1fr; }
+}

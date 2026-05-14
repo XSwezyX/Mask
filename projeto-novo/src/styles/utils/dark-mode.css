@@ -1,0 +1,85 @@
+/* ============================================
+   MASK® — DARK MODE
+   ============================================ */
+
+/* Base */
+body.dark { background-color: #121212; color: #ffffff; }
+body.dark h1, body.dark h2, body.dark h3, body.dark h4,
+body.dark h5, body.dark h6, body.dark p, body.dark span,
+body.dark li, body.dark strong { color: #ffffff; }
+body.dark a   { color: #ffffff; }
+body.dark p   { color: #d1d1d1; }
+
+/* Logo swap */
+.logo-dark { display: none; }
+body.dark .logo-light { display: none; }
+body.dark .logo-dark  { display: block; }
+
+/* Header */
+body.dark header { background-color: #1a1a1a; border-bottom: 1px solid #fff; }
+
+/* Home sections */
+body.dark .sobre,
+body.dark .informacoes,
+body.dark .categorias { background-color: #1a1a1a; }
+body.dark .overlay h2  { color: #1a1a1a; }
+body.dark .categoria   { filter: brightness(0.95); }
+body.dark .informacoes > img { filter: brightness(0) invert(1); }
+
+/* Catalog */
+body.dark .produtos-section  { background: #181818; }
+body.dark .produtos-header   { border-color: #333; }
+body.dark .produtos-header h2 { color: #fff; }
+
+/* Product card */
+body.dark .produto-card             { background: #222; border-color: #333; }
+body.dark .produto-card-info h3,
+body.dark .produto-preco            { color: #fff; }
+body.dark .produto-card-img         { background: #333; }
+body.dark .btn-add-card             { background: #fff; color: #1a1a1a; border-color: #fff; }
+body.dark .btn-add-card:hover       { background: #1a1a1a; color: #fff; border-color: #fff; }
+body.dark .tamanho-tag:hover,
+body.dark .tamanho-tag.selected     { background: #fff; color: #1a1a1a; }
+
+/* Category nav */
+body.dark .cat-nav                          { background: #1a1a1a; border-bottom-color: #333; }
+body.dark .cat-nav-link                     { color: #777; }
+body.dark .cat-nav-link:hover,
+body.dark .cat-nav-link.active              { color: #fff; border-bottom-color: #fff; }
+
+/* Category banner */
+body.dark .category-banner { background-color: #0d0d0d; }
+
+/* Modal */
+body.dark .modal             { background: #1a1a1a; border-color: #444; }
+body.dark .modal-info h2,
+body.dark .modal-preco       { color: #fff; }
+body.dark .modal-desc        { color: #ccc; border-top-color: #333; }
+body.dark .modal-material    { background: #222; color: #ccc; }
+body.dark .modal-gallery     { background: #222; }
+body.dark .modal-thumbs      { background: #2a2a2a; }
+body.dark .tamanho-btn       { background: #222; color: #fff; border-color: #444; }
+body.dark .tamanho-btn:hover,
+body.dark .tamanho-btn.selected { background: #fff; color: #1a1a1a; }
+body.dark .cor-nome          { color: #ccc; }
+
+/* Cart */
+body.dark .cart-sidebar      { background: #1a1a1a; border-color: #333; }
+body.dark .cart-header       { border-color: #333; }
+body.dark .cart-header h3,
+body.dark .cart-close        { color: #fff; }
+body.dark .cart-item         { border-color: #333; }
+body.dark .cart-item-info h4,
+body.dark .cart-item-info .cart-item-preco { color: #fff; }
+body.dark .cart-footer       { border-color: #333; }
+body.dark .cart-total span,
+body.dark .cart-total strong { color: #fff; }
+
+/* Footer */
+body.dark footer               { background: #111; color: #fff; }
+body.dark footer h4            { color: #fff; }
+body.dark footer p,
+body.dark footer a             { color: #aaa; }
+body.dark footer a:hover       { color: #fff; }
+body.dark .footer-brand img    { filter: brightness(0) invert(1); }
+body.dark .footer-bottom       { background: #000; color: #777; }

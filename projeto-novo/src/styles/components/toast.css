@@ -1,0 +1,21 @@
+/* ============================================
+   MASK® — TOAST NOTIFICATION
+   ============================================ */
+
+.toast {
+  position: fixed; bottom: 30px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #1a1a1a; color: #fff;
+  padding: 14px 28px;
+  font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px;
+  z-index: 9999; border: 1px solid #444;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

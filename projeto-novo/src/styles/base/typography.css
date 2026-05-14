@@ -1,0 +1,12 @@
+/* ============================================
+   MASK® — TIPOGRAFIA BASE
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800;900&display=swap');
+
+body {
+  background-color: #FFFFFF;
+  color: #1a1a1a;
+  font-family: 'Barlow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}

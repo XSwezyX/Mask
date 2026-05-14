@@ -1,0 +1,49 @@
+/* ============================================
+   MASK® — FOOTER
+   ============================================ */
+
+footer {
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 50px 10%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+
+footer h4 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+footer p,
+footer a {
+  font-size: 0.85rem;
+  color: #666;
+  text-decoration: none;
+  line-height: 1.8;
+  display: block;
+  transition: color 0.2s;
+}
+
+footer a:hover { color: #000; }
+
+.footer-brand img {
+  height: 60px;
+  filter: brightness(0);
+  margin-bottom: 12px;
+}
+
+.footer-bottom {
+  background: #f5f5f5;
+  text-align: center;
+  padding: 16px;
+  font-size: 0.75rem;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
